@@ -20,6 +20,8 @@ read filePath
         cd $HOME/Downloads
     elif [[ $filePath == documents ]]; then
         cd $HOME/Documents
+    elif [[ $filePath != desktop ]] || [[ $filePath != downloads ]] || [[ $filePath != documents ]]; then
+	cd "$filePath"
     fi
 
 pwd
