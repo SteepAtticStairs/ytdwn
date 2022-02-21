@@ -40,13 +40,25 @@ if [ $format == mp4 ]; then
     echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
     read cookies
 
-    if [ $cookies == no ]; then
+    echo " "
+    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
+    echo "YES / NO"
+    read aria2yn
 
-    yt-dlp -v -S 'res:'$quality'' --format mp4 $link
+    ariacookies=$cookies$aria2yn
 
-    elif [ $cookies != no ]; then
 
-    yt-dlp --cookies $cookies -v -S 'res:'$quality'' --format mp4 $link
+    if [ $ariacookies == nono ]; then
+        yt-dlp -v -S 'res:'$quality'' --format mp4 $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -v -S 'res:'$quality'' --format mp4 $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -v -S 'res:'$quality'' --format mp4 $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -v -S 'res:'$quality'' --format mp4 $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
 
@@ -58,13 +70,25 @@ elif [ $format == mp3 ]; then
     echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
     read cookies
 
-    if [ $cookies == no ]; then
+    echo " "
+    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
+    echo "YES / NO"
+    read aria2yn
 
-    yt-dlp -f 'ba' -x --audio-format mp3 $link
+    ariacookies=$cookies$aria2yn
 
-    elif [ $cookies != no ]; then
 
-    yt-dlp --cookies $cookies -f 'ba' -x --audio-format mp3 $link
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f 'ba' -x --audio-format mp3 $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f 'ba' -x --audio-format mp3 $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f 'ba' -x --audio-format mp3 $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f 'ba' -x --audio-format mp3 $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
 
@@ -76,13 +100,25 @@ elif [ $format == best ]; then
     echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
     read cookies
 
-    if [ $cookies == no ]; then
+    echo " "
+    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
+    echo "YES / NO"
+    read aria2yn
 
-    yt-dlp -f "bestvideo+bestaudio" $link
+    ariacookies=$cookies$aria2yn
 
-    elif [ $cookies != no ]; then
 
-    yt-dlp --cookies $cookies -f "bestvideo+bestaudio" $link
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f "bestvideo+bestaudio" $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f "bestvideo+bestaudio" $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f "bestvideo+bestaudio" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f "bestvideo+bestaudio" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
 
@@ -94,13 +130,12 @@ elif [ $format == check ]; then
     echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
     read cookies
 
+
     if [ $cookies == no ]; then
+        yt-dlp -F $link
 
-    yt-dlp -F $link
-
-    elif [ $cookies != no ]; then
-
-    yt-dlp --cookies $cookies -F $link
+    elif [ $cookies == yes ]; then
+        yt-dlp --cookies $cookies -F $link
 
     fi
 
@@ -116,13 +151,25 @@ elif [ $format == number ]; then
     echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
     read cookies
 
-    if [ $cookies == no ]; then
+    echo " "
+    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
+    echo "YES / NO"
+    read aria2yn
 
-    yt-dlp -f $formatNumber $link
+    ariacookies=$cookies$aria2yn
 
-    elif [ $cookies != no ]; then
 
-    yt-dlp --cookies $cookies -f $formatNumber $link
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f $formatNumber $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f $formatNumber $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f $formatNumber $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f $formatNumber $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
 
