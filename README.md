@@ -21,3 +21,9 @@ sudo chown root: /usr/local/bin/ytdwn
 # allows it to be readable and executable for everyone
 sudo chmod 755 /usr/local/bin/ytdwn
 ```
+
+If you want to remove a previous `ytdwn` in `/usr/local/bin`, run
+```
+sudo rm -rf /usr/local/bin/ytdwn
+```
+However, you must always be careful with `sudo rm -rf`, as this can be easily misused on accident.
