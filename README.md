@@ -141,6 +141,8 @@ Create a new release, copy the link for the `Source code (tar.gz)` field, and do
 
 Navigate into the `homebrew-ytdwn` directory, and on the `ytdwn.rb` file, update the URL value (with the new tar.gz link) and the sha256 value (given to you with the `brew create` command).
 
+Add, commit, and push these changes.
+
 Remove the `ytdwn.rb` file from the Homebrew directory again, so as to avoid conflicts:
 ```
 sudo rm /opt/homebrew/Library/Taps/homebrew/homebrew-core/Formula/ytdwn.rb
