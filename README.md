@@ -71,7 +71,7 @@ Run `brew create your-link`, replace "your-link" with the URL you just copied.
 
 This should create a new ruby file at `/opt/homebrew/Library/Taps/homebrew/homebrew-core/Formula/ytdwn.rb`, and it should open it in your git configured text editor. For me, it is VSCode.
 
-Create a new repo called `homebrew-ytdwn`. Make sure the repo name has `homebrew` at the start.
+Create a new repo called `homebrew-ytdwn`. Make sure the repo name has `homebrew` at the start. [Link to my repo](https://github.com/SteepAtticStairs/homebrew-ytdwn)
 
 Add a file called `ytdwn.rb` into that empty repo. The contents of this file will be very similar to what was created with the previous `brew create` command.
 
