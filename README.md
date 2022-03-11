@@ -10,9 +10,13 @@ You must have yt-dlp installed. On MacOS you can do this by running `brew instal
 
 If you want to access this script from anywhere by only running the name of the script, e.g. by typing `ytdwn` in your terminal, do this. This is not neccessary, but only for convenience's sake. This has only been tested on MacOS, but it will likely be similar for another Linux/Unix based system.
 ```
-# assuming you have downloaded ytdwn.sh to your Downloads directory,
+# assuming you have cloned the ytdwn repo to your Downloads directory,
 # this copies ytdwn.sh to /usr/local/bin, which is where executables are
 # located
+
+# copies ytdwn.sh from the repo folder to the Downloads folder
+cp ~/Downloads/ytdwn/ytdwn.sh ~/Downloads/ytdwn.sh
+# copies ytdwn.sh to /usr/local/bin
 sudo cp ~/Downloads/ytdwn.sh /usr/local/bin/ytdwn
 
 # gives ownership to root
