@@ -1,17 +1,39 @@
 #!/bin/bash
 
+bold=$(tput bold) # bold text
+normal=$(tput sgr0) # normal text
+black='\e[30m'
+red='\e[91m'
+green='\e[92m'
+yellow='\e[93m'
+blue='\e[38;5;27m'
+magenta='\e[35m'
+cyan='\e[36m'
+lightgray='\e[37m'
+darkgray='\e[90m'
+darkred='\e[31m'
+darkgreen='\e[32m'
+darkyellow='\e[33m'
+lightblue='\e[\e[38;5;39m'
+lightmagenta='\e[95m'
+lightcyan='\e[96m'
+white='\e[97m'
+nocolor='\e[0m'
+
 shopt -s nocasematch
 
 # yt-dlp -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' --format mp4 your-video
 # yt-dlp -f 'ba' -x --audio-format mp3 your-video
 
-echo " "
-echo "What is the video/playlist URL you want to download?"
+########################################################################################################
+
+printf "\n"
+printf "${blue}What is the video/playlist URL you want to download?${red}\n"
 read link
 
-echo " "
-echo "Which directory would you like to download the video to?"
-echo "Defaults are Desktop, Documents, and Downloads."
+printf "\n"
+printf "${blue}Which directory would you like to download the video to?${red}\n"
+printf "${lightblue}Defaults are Desktop, Documents, and Downloads.${red}\n"
 read filePath
 
     if [[ $filePath == desktop ]]; then
@@ -24,28 +46,32 @@ read filePath
         cd "$filePath"
     fi
 
+printf "${lightblue}"
 pwd
+printf "${red}"
 
-echo " "
-echo "Would you like to download the video to mp3 (audio), mp4 (video), the BEST video + audio format available (generally webm), a specific format NUMBER, or CHECK avaliable formats?"
+printf "\n"
+printf "${blue}Would you like to download the video to ${green}mp3${blue} (audio), ${green}mp4${blue} (video), the ${green}BEST${blue} video + audio format available (generally webm), a specific format ${green}NUMBER${blue}, or ${green}CHECK${blue} avaliable formats?${red}\n"
 read format
 
 if [ $format == mp4 ]; then
-    echo " "
-    echo "What quality would you like to download the video in?"
-    echo "You can chose 1080, 720, 480, 360, 240, 144"
+    printf "\n"
+    printf "${blue}What quality would you like to download the video in?${red}\n"
+    printf "${blue}You can chose ${green}1080, 720, 480, 360, 240, 144${red}\n"
     read quality
 
-    echo " "
-    echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
     read cookies
 
-    echo " "
-    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
-    echo "YES / NO"
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
     read aria2yn
 
     ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
 
 
     if [ $ariacookies == nono ]; then
@@ -66,16 +92,18 @@ if [ $format == mp4 ]; then
 
 elif [ $format == mp3 ]; then
 
-    echo " "
-    echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
     read cookies
 
-    echo " "
-    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
-    echo "YES / NO"
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO\n"
     read aria2yn
 
     ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
 
 
     if [ $ariacookies == nono ]; then
@@ -96,16 +124,18 @@ elif [ $format == mp3 ]; then
     
 elif [ $format == best ]; then
 
-    echo " "
-    echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
     read cookies
 
-    echo " "
-    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
-    echo "YES / NO"
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
     read aria2yn
 
     ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
 
 
     if [ $ariacookies == nono ]; then
@@ -126,9 +156,12 @@ elif [ $format == best ]; then
 
 elif [ $format == check ]; then
 
-    echo " "
-    echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
     read cookies
+
+    printf "${nocolor}"
+    printf "\n"
 
 
     if [ $cookies == no ]; then
@@ -143,20 +176,22 @@ elif [ $format == check ]; then
 
 elif [ $format == number ]; then
 
-    echo " "
-    echo "What format number would you like to download?"
+    printf "\n"
+    printf "${blue}What format number would you like to download?${red}\n"
     read formatNumber
 
-    echo " "
-    echo "Would you like to add a cookies file? Type NO if no, if yes, please provide the filepath to the cookies file."
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
     read cookies
 
-    echo " "
-    echo "Would you like to use aria2 to speed up your download? Must be pre-installed."
-    echo "YES / NO"
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
     read aria2yn
 
     ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
 
 
     if [ $ariacookies == nono ]; then
