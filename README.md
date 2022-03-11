@@ -15,15 +15,15 @@ If you want to access this script from anywhere by only running the name of the 
 # located
 
 # copies ytdwn.sh from the repo folder to the Downloads folder
-cp ~/Downloads/ytdwn/ytdwn.sh ~/Downloads/ytdwn.sh
+$    cp ~/Downloads/ytdwn/ytdwn.sh ~/Downloads/ytdwn.sh
 # copies ytdwn.sh to /usr/local/bin
-sudo cp ~/Downloads/ytdwn.sh /usr/local/bin/ytdwn
+$    sudo cp ~/Downloads/ytdwn.sh /usr/local/bin/ytdwn
 
 # gives ownership to root
-sudo chown root: /usr/local/bin/ytdwn
+$    sudo chown root: /usr/local/bin/ytdwn
 
 # allows it to be readable and executable for everyone
-sudo chmod 755 /usr/local/bin/ytdwn
+$    sudo chmod 755 /usr/local/bin/ytdwn
 ```
 
 If you want to remove a previous `ytdwn` in `/usr/local/bin`, run
