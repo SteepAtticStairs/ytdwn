@@ -5,6 +5,8 @@ shopt -s nocasematch
 # yt-dlp -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' --format mp4 your-video
 # yt-dlp -f 'ba' -x --audio-format mp3 your-video
 
+echo "Test for colored text."
+
 echo " "
 echo "What is the video/playlist URL you want to download?"
 read link
