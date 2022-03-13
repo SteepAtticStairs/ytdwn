@@ -51,13 +51,14 @@ pwd
 printf "${red}"
 
 printf "\n"
-printf "${blue}Would you like to download the video to ${green}mp3${blue} (audio), ${green}mp4${blue} (video), the ${green}BEST${blue} video + audio format available (generally webm), a specific format ${green}NUMBER${blue}, or ${green}CHECK${blue} avaliable formats?${red}\n"
+printf "${blue}Would you like to download the video to ${green}mp3${blue} (audio), ${green}mp4${blue} (video), ${green}1080p60${blue} (video mp4), ${green}720p60${blue} (video mp4), the ${green}BEST${blue} video + audio format available (generally webm), a specific format ${green}NUMBER${blue}, or ${green}CHECK${blue} avaliable formats?${red}\n"
 read format
 
 if [ $format == mp4 ]; then
     printf "\n"
     printf "${blue}What quality would you like to download the video in?${red}\n"
     printf "${blue}You can chose ${green}1080, 720, 480, 360, 240, 144${red}\n"
+    printf "${blue}If you want 1080 quality, I reccomend restarting the script and typing in 1080p60 in the prompt above, as this is slightly more reliable. Typing in 1080 here sometimes gives you only 720.${red}\n"
     read quality
 
     printf "\n"
@@ -149,6 +150,70 @@ elif [ $format == best ]; then
 
     elif [ $ariacookies == yesyes ]; then
         yt-dlp --cookies $cookies -f "bestvideo+bestaudio" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    fi
+
+##########################
+
+elif [ $format == 1080p60 ]; then
+
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
+    read cookies
+
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
+    read aria2yn
+
+    ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
+
+
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f "299+140" $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f "299+140" $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f "299+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f "299+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    fi
+
+##########################
+
+elif [ $format == 720p60 ]; then
+
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
+    read cookies
+
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
+    read aria2yn
+
+    ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
+
+
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f "298+140" $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f "298+140" $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f "298+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f "298+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
 
