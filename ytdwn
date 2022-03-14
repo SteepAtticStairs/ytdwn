@@ -27,51 +27,11 @@ shopt -s nocasematch
 
 ########################################################################################################
 
-printf "\n"
-printf "${blue}What is the video/playlist URL you want to download?${red}\n"
-read link
+##############################################################################
+##############################################################################
 
-printf "\n"
-printf "${blue}Which directory would you like to download the video to?${red}\n"
-printf "${lightblue}Defaults are Desktop, Documents, and Downloads.${red}\n"
-read filePath
+res() {
 
-    if [[ $filePath == desktop ]]; then
-        cd $HOME/Desktop
-    elif [[ $filePath == downloads ]]; then
-        cd $HOME/Downloads
-    elif [[ $filePath == documents ]]; then
-        cd $HOME/Documents
-    elif [[ $filePath != desktop ]] || [[ $filePath != downloads ]] || [[ $filePath != documents ]]; then
-        cd "$filePath"
-    fi
-
-printf "${lightblue}"
-pwd
-printf "${red}"
-
-printf "\n"
-printf "${blue}Would you like to download the video to"
-printf "\n"
-printf "${green}mp3${blue} (audio),"
-printf "\n"
-printf "${green}mp4${blue} (video),"
-printf "\n"
-printf "${green}1080p30${blue} (video mp4),"
-printf "\n"
-printf "${green}1080p60${blue} (video mp4),"
-printf "\n"
-printf "${green}720p60${blue} (video mp4),"
-printf "\n"
-printf "the ${green}BEST${blue} video + audio format available (generally webm),"
-printf "\n"
-printf "a specific format ${green}NUMBER${blue},"
-printf "\n"
-printf "or ${green}CHECK${blue} avaliable formats?${red}"
-printf "\n"
-read format
-
-if [ $format == mp4 ]; then
     printf "\n"
     printf "${blue}What quality would you like to download the video in?${red}\n"
     printf "${blue}You can chose ${green}1080, 720, 480, 360, 240, 144${red}\n"
@@ -105,10 +65,11 @@ if [ $format == mp4 ]; then
         yt-dlp --cookies $cookies -v -S 'res:'$quality'' --format mp4 $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
 ##########################
 
-elif [ $format == mp3 ]; then
+mpthree () {
 
     printf "\n"
     printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
@@ -137,10 +98,44 @@ elif [ $format == mp3 ]; then
         yt-dlp --cookies $cookies -f 'ba' -x --audio-format mp3 $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
 ##########################
     
-elif [ $format == best ]; then
+bestmpfour () {
+
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
+    read cookies
+
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
+    read aria2yn
+
+    ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
+
+
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    fi
+}
+
+##########################
+    
+best () {
 
     printf "\n"
     printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
@@ -169,10 +164,11 @@ elif [ $format == best ]; then
         yt-dlp --cookies $cookies -f "bestvideo+bestaudio" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
 ##########################
 
-elif [ $format == 1080p30 ]; then
+teneighty_thirty () {
 
     printf "\n"
     printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
@@ -201,10 +197,11 @@ elif [ $format == 1080p30 ]; then
         yt-dlp --cookies $cookies -f "137+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
 ##########################
 
-elif [ $format == 1080p60 ]; then
+teneighty_sixty () {
 
     printf "\n"
     printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
@@ -233,10 +230,44 @@ elif [ $format == 1080p60 ]; then
         yt-dlp --cookies $cookies -f "299+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
 ##########################
 
-elif [ $format == 720p60 ]; then
+seventwenty_thirty () {
+
+    printf "\n"
+    printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
+    read cookies
+
+    printf "\n"
+    printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
+    printf "${green}YES / NO${red}\n"
+    read aria2yn
+
+    ariacookies=$cookies$aria2yn
+    printf "${nocolor}"
+    printf "\n"
+
+
+    if [ $ariacookies == nono ]; then
+        yt-dlp -f "22" $link
+
+    elif [ $ariacookies == yesno ]; then
+        yt-dlp --cookies $cookies -f "22" $link
+
+    elif [ $ariacookies == noyes ]; then
+        yt-dlp -f "22" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    elif [ $ariacookies == yesyes ]; then
+        yt-dlp --cookies $cookies -f "22" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
+
+    fi
+}
+
+##########################
+
+seventwenty_sixty () {
 
     printf "\n"
     printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
@@ -265,10 +296,11 @@ elif [ $format == 720p60 ]; then
         yt-dlp --cookies $cookies -f "298+140" $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
 ##########################
 
-elif [ $format == check ]; then
+check () {
 
     printf "\n"
     printf "${blue}Would you like to add a cookies file? Type ${green}NO${blue} if no, if yes, please provide the filepath to the cookies file.${red}\n"
@@ -285,10 +317,11 @@ elif [ $format == check ]; then
         yt-dlp --cookies $cookies -F $link
 
     fi
+}
 
 ##########################
 
-elif [ $format == number ]; then
+number () {
 
     printf "\n"
     printf "${blue}What format number would you like to download?${red}\n"
@@ -321,5 +354,84 @@ elif [ $format == number ]; then
         yt-dlp --cookies $cookies -f $formatNumber $link --external-downloader=aria2c --external-downloader-args '--min-split-size=1M --max-connection-per-server=16 --max-concurrent-downloads=16 --split=16'
 
     fi
+}
 
+##############################################################################
+##############################################################################
+
+printf "\n"
+printf "${blue}What is the video/playlist URL you want to download?${red}\n"
+read link
+
+printf "\n"
+printf "${blue}Which directory would you like to download the video to?${red}\n"
+printf "${lightblue}Defaults are Desktop, Documents, and Downloads.${red}\n"
+read filePath
+
+    if [[ $filePath == desktop ]]; then
+        cd $HOME/Desktop
+    elif [[ $filePath == downloads ]]; then
+        cd $HOME/Downloads
+    elif [[ $filePath == documents ]]; then
+        cd $HOME/Documents
+    elif [[ $filePath != desktop ]] || [[ $filePath != downloads ]] || [[ $filePath != documents ]]; then
+        cd "$filePath"
+fi
+
+printf "${lightblue}"
+pwd
+printf "${red}"
+
+printf "\n"
+printf "${blue}Would you like to download the video to"
+printf "\n"
+printf "\n"
+printf "${green}mp3${blue} (audio),"
+printf "\n"
+printf "\n"
+printf "${green}1080${blue}p30 (video mp4),"
+printf "\n"
+printf "${green}1080p60${blue} (video mp4),"
+printf "\n"
+printf "\n"
+printf "${green}720${blue}p30 (video mp4),"
+printf "\n"
+printf "${green}720p60${blue} (video mp4),"
+printf "\n"
+printf "\n"
+printf "the ${green}BESTmp4${blue} video + audio format available (specifically mp4),"
+printf "\n"
+printf "the ${green}BEST${blue} video + audio format available (generally webm),"
+printf "\n"
+printf "\n"
+printf "a specific video ${green}RES${blue}olution (video mp4),"
+printf "\n"
+printf "\n"
+printf "a specific format ${green}NUMBER${blue},"
+printf "\n"
+printf "\n"
+printf "or ${green}CHECK${blue} avaliable formats?${red}"
+printf "\n"
+read format
+
+if [[ $format == mp3 ]]; then
+    mpthree
+elif [[ $format == res ]]; then
+    res
+elif [[ $format == 1080 ]]; then
+    teneighty_thirty
+elif [[ $format == 1080p60 ]]; then
+    teneighty_sixty
+elif [[ $format == 720 ]]; then
+    seventwenty_thirty
+elif [[ $format == 720p60 ]]; then
+    seventwenty_sixty
+elif [[ $format == bestmp4 ]]; then
+    bestmpfour
+elif [[ $format == best ]]; then
+    best
+elif [[ $format == number ]]; then
+    number
+elif [[ $format == check ]]; then
+    check
 fi
