@@ -77,7 +77,7 @@ mpthree () {
 
     printf "\n"
     printf "${blue}Would you like to use aria2 to speed up your download? Must be pre-installed.${red}\n"
-    printf "${green}YES / NO\n"
+    printf "${green}YES / NO${red}\n"
     read aria2yn
 
     ariacookies=$cookies$aria2yn
