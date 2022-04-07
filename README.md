@@ -6,6 +6,24 @@ This is a small shell script designed to make simple tasks with the CLI youtube 
 
 You must have yt-dlp installed. On MacOS you can do this by running `brew install yt-dlp`, and once that installs, you can run this script and you are good to go.
 
+# To run this script without installation
+```
+/bin/bash -c "$(curl -s https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/ytdwn.sh)"
+```
+
+# To install this script
+```
+/bin/bash -c "$(curl -s https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/using/install.sh)"
+```
+
+# To uninstall this script
+```
+/bin/bash -c "$(curl -s https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/using/uninstall.sh)"
+```
+
+<br><br><br><br>
+
+# OLD
 # Making this a custom command
 
 If you want to access this script from anywhere by only running the name of the script, e.g. by typing `ytdwn` in your terminal, do this. This is not neccessary, but only for convenience's sake. This has only been tested on MacOS, but it will likely be similar for another Linux/Unix based system.
