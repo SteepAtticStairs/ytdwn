@@ -8,17 +8,17 @@ You must have yt-dlp installed. On MacOS you can do this by running `brew instal
 
 # To run this script without installation
 ```
-/bin/bash -c "$(curl -s https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/ytdwn.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/ytdwn.sh)"
 ```
 
 # To install this script
 ```
-/bin/bash -c "$(curl -s https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/using/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/tools/install.sh)"
 ```
 
 # To uninstall this script
 ```
-/bin/bash -c "$(curl -s https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/using/uninstall.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/SteepAtticStairs/ytdwn/main/tools/uninstall.sh)"
 ```
 
 <br><br><br><br>
